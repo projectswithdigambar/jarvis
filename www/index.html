@@ -61,7 +61,7 @@
                                     placeholder="type here ... ">
                                 <button id="SendBtn" class="glow-on-hover" hidden><i class="bi bi-send"></i></button>
                                 <button id="MicBtn" class="glow-on-hover"><i class="bi bi-mic"></i></button>
-                                <button id="ChatBtn" class="glow-on-hover"><i class="bi bi-chat-dots"></i></button>
+                                <button id="ChatBtn" class="glow-on-hover" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-chat-dots"></i></button>
                                 <button id="SettingsBtn" class="glow-on-hover"><i class="bi bi-gear"></i></button>
 
                             </div>
@@ -76,7 +76,7 @@
 
         <section id="SiriWave" class="mb-4" hidden>
 
-            <div class="container" >
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
@@ -91,7 +91,18 @@
             </div>
 
         </section>
+    </div>
 
+    <div class="offcanvas offcanvas-start chat-canvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="offcanvasScrollingLabel">Chats</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div id="chat-canvas-body" class="offcanvas-body">
+            <!-- Chatting code here -->
+
+        </div>
     </div>
 
     <!--Jquery  -->
