@@ -17,6 +17,7 @@ import pywhatkit as kit
 import pvporcupine
 
 from engine.helper import extract_yt_term, remove_words
+from hugchat import hugchat
 
 con = sqlite3.connect("jarvis.db")
 cursor = con.cursor()
@@ -171,3 +172,14 @@ def whatsApp(mobile_no, message, flag, name):
 
     pyautogui.hotkey('enter')
     speak(jarvis_message)
+
+# chat bot 
+def chatBot(query):
+    user_input = query.lower()
+    chatbot = hugchat.ChatBot(cookie_path="engine\cookies.json")
+    id = chatbot.new_conversation()
+    chatbot.change_conversation(id)
+    response =  chatbot.chat(user_input)
+    print(response)
+    speak(response)
+    return response
