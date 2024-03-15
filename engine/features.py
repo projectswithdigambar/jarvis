@@ -15,7 +15,6 @@ from engine.config import ASSISTANT_NAME
 # Playing assiatnt sound function
 import pywhatkit as kit
 import pvporcupine
-# Translate Text feature by Andres Garcia
 import googletrans
 
 from engine.helper import extract_yt_term, remove_words
@@ -173,7 +172,18 @@ def whatsApp(mobile_no, message, flag, name):
 
     pyautogui.hotkey('enter')
     speak(jarvis_message)
-#Translate Text 
+
+# chat bot 
+def chatBot(query):
+    user_input = query.lower()
+    chatbot = hugchat.ChatBot(cookie_path="engine\cookies.json")
+    id = chatbot.new_conversation()
+    chatbot.change_conversation(id)
+    response =  chatbot.chat(user_input)
+    print(response)
+    speak(response)
+    return response
+
 def translateText(query):
     translator = googletrans.Translator()
     translated_text = translator.translate(query, dest='es').text
