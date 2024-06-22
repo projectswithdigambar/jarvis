@@ -59,22 +59,36 @@ def allCommands(message=1):
             PlayYoutube(query)
         
         elif "send message" in query or "phone call" in query or "video call" in query:
-            from engine.features import findContact, whatsApp
-            flag = ""
+            from engine.features import findContact, whatsApp, makeCall, sendMessage
             contact_no, name = findContact(query)
             if(contact_no != 0):
+                speak("Which mode you want to use whatsapp or mobile")
+                preferance = takecommand()
+                print(preferance)
 
-                if "send message" in query:
-                    flag = 'message'
-                    speak("what message to send")
-                    query = takecommand()
-                    
-                elif "phone call" in query:
-                    flag = 'call'
-                else:
-                    flag = 'video call'
-                    
-                whatsApp(contact_no, query, flag, name)
+                if "mobile" in preferance:
+                    if "send message" in query or "send sms" in query: 
+                        speak("what message to send")
+                        message = takecommand()
+                        sendMessage(message, contact_no, name)
+                    elif "phone call" in query:
+                        makeCall(name, contact_no)
+                    else:
+                        speak("please try again")
+                elif "whatsapp" in preferance:
+                    message = ""
+                    if "send message" in query:
+                        message = 'message'
+                        speak("what message to send")
+                        query = takecommand()
+                                        
+                    elif "phone call" in query:
+                        message = 'call'
+                    else:
+                        message = 'video call'
+                                        
+                    whatsApp(contact_no, query, message, name)
+
         else:
             from engine.features import chatBot
             chatBot(query)
