@@ -16,26 +16,20 @@ Jarvis is an intelligent assistant designed to help automate tasks and provide q
    cd jarvis
    ```
 
-2. **Install Python Dependencies**:
+2. **Configure Environment**:
+   ```bash
+   python.exe -m venv env
+   ```
+   
+3. **Install Python Dependencies**:
    ```bash
    python -m pip install --upgrade pip
    pip install -r requirements.txt
    ```
 
-3. **Configure Environment**:
+4. **Start Jarvis**:
    ```bash
-   cp .env.example .env
-   # Edit .env with your API keys and preferences
-   ```
-
-4. **Initialize Database**:
-   ```bash
-   python scripts/init_db.py
-   ```
-
-5. **Start Jarvis**:
-   ```bash
-   python main.py
+   python run.py
    ```
 
 ## Contributing Guidelines
