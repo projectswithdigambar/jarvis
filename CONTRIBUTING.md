@@ -2,10 +2,6 @@
 
 Thank you for your interest in contributing to Jarvis! This document provides guidelines and information about contributing to the project.
 
-## Code of Conduct
-
-By participating in this project, you agree to abide by our Code of Conduct. Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before contributing.
-
 ## How Can I Contribute?
 
 ### Reporting Bugs
