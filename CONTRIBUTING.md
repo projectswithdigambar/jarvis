@@ -132,15 +132,3 @@ def process_voice_command(command: str, context: Dict[str, Any]) -> CommandResul
   ```bash
   python -m pytest
   ```
-
-## Additional Resources
-
-- [Project Documentation](https://docs.jarvis.ai)
-- [Development Guide](https://docs.jarvis.ai/dev)
-- [API Reference](https://docs.jarvis.ai/api)
-
-## Questions?
-
-Feel free to join our [Discord community](https://discord.gg/jarvis) or create a discussion on GitHub if you have any questions about contributing.
-
-Thank you for contributing to Jarvis! 🎉
