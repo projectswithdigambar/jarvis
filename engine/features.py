@@ -11,12 +11,12 @@ import eel
 import pyaudio
 import pyautogui
 from engine.command import speak
-from engine.config import ASSISTANT_NAME
+from engine.config import ASSISTANT_NAME, LLM_KEY
 # Playing assiatnt sound function
 import pywhatkit as kit
 import pvporcupine
 
-from engine.helper import extract_yt_term, remove_words
+from engine.helper import extract_yt_term, markdown_to_text, remove_words
 from hugchat import hugchat
 
 con = sqlite3.connect("jarvis.db")
@@ -217,3 +217,21 @@ def sendMessage(message, mobileNo, name):
     #send
     tapEvents(957, 1397)
     speak("message send successfully to "+name)
+
+import google.generativeai as genai
+def geminai(query):
+    try:
+        query = query.replace(ASSISTANT_NAME, "")
+        query = query.replace("search", "")
+        # Set your API key
+        genai.configure(api_key=LLM_KEY)
+
+        # Select a model
+        model = genai.GenerativeModel("gemini-2.0-flash")
+
+        # Generate a response
+        response = model.generate_content(query)
+        filter_text = markdown_to_text(response.text)
+        speak(filter_text)
+    except Exception as e:
+        print("Error:", e)
