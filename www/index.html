@@ -306,7 +306,8 @@
                                 <button id="ChatBtn" class="glow-on-hover" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i
                                         class="bi bi-chat-dots"></i></button>
-                                <button id="SettingsBtn" class="glow-on-hover"><i class="bi bi-gear"></i></button>
+                                <button id="SettingsBtn" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" class="glow-on-hover"><i class="bi bi-gear"></i></button>
 
                             </div>
                         </div>
@@ -325,7 +326,8 @@
                     <div class="col-md-12">
                         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
                             <div class="">
-                                <p class="text-start text-light mb-4 siri-message" style="font-size: 28px;">Hello, I am J.A.R.V.I.S</p>
+                                <p class="text-start text-light mb-4 siri-message" style="font-size: 28px;">Hello, I am
+                                    J.A.R.V.I.S</p>
                                 <div id="siri-container"></div>
                             </div>
 
@@ -337,6 +339,7 @@
         </section>
     </div>
 
+    <!-- Chat Box -->
     <div class="offcanvas offcanvas-start chat-canvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
@@ -346,6 +349,357 @@
         <div id="chat-canvas-body" class="offcanvas-body">
             <!-- Chatting code here -->
 
+        </div>
+    </div>
+
+    <!-- Modal Settings-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content glass-effect">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: white; text-align: center;">Assistant
+                        Settings</h5>
+                    <button type="button" class="btn-close btn-glow-red" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                aria-selected="true">Personal</button>
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                                aria-selected="false">Commands</button>
+                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
+                                aria-selected="false">Phone Book</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <!-- Tab-1 -->
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                            aria-labelledby="nav-home-tab" tabindex="0">
+                            <div class="d-flex align-items-start mt-4">
+                                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                                    aria-orientation="vertical">
+                                    <button class="nav-link btn-style active" id="ProfileTab-tab" data-bs-toggle="pill"
+                                        data-bs-target="#ProfileTab" type="button" role="tab" aria-controls="ProfileTab"
+                                        aria-selected="true">Profile</button>
+                                    <button class="nav-link btn-style" id="EditProfileTab-tab" data-bs-toggle="pill"
+                                        data-bs-target="#EditProfileTab" type="button" role="tab"
+                                        aria-controls="EditProfileTab" aria-selected="false">Edit</button>
+                                    <!-- <button class="nav-link btn-style" id="AboutTab-tab" data-bs-toggle="pill"
+                                        data-bs-target="#AboutTab" type="button" role="tab" aria-controls="AboutTab"
+                                        aria-selected="false">About</button> -->
+                                </div>
+                                <div class="tab-content" id="v-pills-tabContent">
+
+                                    <!-- Link 1 -->
+                                    <div class="tab-pane fade show active" id="ProfileTab" role="tabpanel"
+                                        aria-labelledby="ProfileTab-tab">
+
+                                        <div class="p-4">
+                                            <p>Here you can see your personal details, aslo you can edit your personal
+                                                details </p>
+
+                                            <div class="mt-4">
+                                                <p><strong>Name: <span id="OwnerName"
+                                                            class="text-capitalize"></span></strong></p>
+                                                <p><strong>Designation: <span id="Designation"></span></strong></p>
+                                                <p><strong>Mobile No: <span id="MobileNo"></span></strong></p>
+                                                <p><strong>Email: <span id="Email"></span></strong></p>
+                                                <p><strong>City: <span id="City"
+                                                            class="text-capitalize"></span></strong></p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- Link 2 -->
+                                    <div class="tab-pane fade" id="EditProfileTab" role="tabpanel"
+                                        aria-labelledby="EditProfileTab-tab">
+
+                                        <div class="p-4">
+                                            <p>Here you can see your personal details, aslo you can edit your personal
+                                                details </p>
+                                            <div class="mb-3 mt-4">
+                                                <input type="text" class="form-control glassy-form" id="InputOwnerName"
+                                                    placeholder="enter your name" required>
+                                            </div>
+                                            <div class="mb-3 mt-4">
+                                                <input type="text" class="form-control glassy-form"
+                                                    id="InputDesignation" placeholder="enter designation" required>
+                                            </div>
+                                            <div class="mb-3 mt-4">
+                                                <input type="tel" class="form-control glassy-form" id="InputMobileNo"
+                                                    placeholder="enter mobile no" required>
+                                            </div>
+
+                                            <div class="mb-3 mt-4">
+                                                <input type="email" class="form-control glassy-form" id="InputEmail"
+                                                    placeholder="enter email" required>
+                                            </div>
+
+                                            <div class="mb-3 mt-4">
+                                                <input type="text" class="form-control glassy-form" id="InputCity"
+                                                    placeholder="enter city" required>
+                                            </div>
+
+                                            <div class="text-center mt-4">
+                                                <button id="UpdateBtn" class="btn btn-glow">Submit</button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Link 3 -->
+                                    <div class="tab-pane fade" id="AboutTab" role="tabpanel"
+                                        aria-labelledby="AboutTab-tab">
+
+                                        <h1>Developed By</h1>
+                                        <h3>Digambar Chaudhari</h3>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2 -->
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                            tabindex="0">
+
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                aria-labelledby="nav-home-tab" tabindex="0">
+                                <div class="d-flex align-items-start mt-4">
+                                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                                        aria-orientation="vertical">
+                                        <button class="nav-link btn-style active" id="SystemCommand-tab"
+                                            data-bs-toggle="pill" data-bs-target="#SystemCommand" type="button"
+                                            role="tab" aria-controls="SystemCommand" aria-selected="true">System
+                                        </button>
+                                        <button class="nav-link btn-style" id="WebCommand-tab" data-bs-toggle="pill"
+                                            data-bs-target="#WebCommand" type="button" role="tab"
+                                            aria-controls="WebCommand" aria-selected="false">Web
+                                        </button>
+                                        <!-- <button class="nav-link btn-style" id="HelpCommand-tab" data-bs-toggle="pill"
+                                            data-bs-target="#HelpCommand" type="button" role="tab"
+                                            aria-controls="HelpCommand" aria-selected="false">
+                                            Help</button> -->
+                                    </div>
+                                    <div class="tab-content" id="v-pills-tabContent">
+
+                                        <!-- System Command Section -->
+                                        <div class="tab-pane fade show active" id="SystemCommand" role="tabpanel"
+                                            aria-labelledby="SystemCommand-tab">
+
+                                            <div class="p-2">
+                                                <p> Add Your New Commands </p>
+
+                                                <div class="d-flex mt-2">
+                                                    <div class="mb-2 pl-2">
+                                                        <input type="text" class="form-control glassy-form"
+                                                            id="SysCommandKey" placeholder="keyword eg: notepad"
+                                                            required>
+                                                    </div>
+
+                                                    <div class="mb-3 ml-4 pl-4" style="padding-left: 5px;">
+                                                        <input type="text" class="form-control glassy-form"
+                                                            id="SysCommandValue" placeholder="Path eg: c:/notepad.exe"
+                                                            required>
+                                                    </div>
+
+                                                    <div class="text-center ml-4 pl-4" style="padding-left: 5px;">
+                                                        <button id="SysCommandAddBtn" class="btn btn-glow"
+                                                            style="width: 100%;">Add</button>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="table-responsive table-scroll">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col" class="text-light">#</th>
+                                                                <th scope="col" class="text-light">Keyword</th>
+                                                                <th scope="col" class="text-light">Path</th>
+                                                                <th scope="col" class="text-light">Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="TableData">
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Web Command Section -->
+                                        <div class="tab-pane fade" id="WebCommand" role="tabpanel"
+                                            aria-labelledby="WebCommand-tab">
+
+                                            <div class="p-2">
+                                                <p> Add Your New Web Commands </p>
+
+                                                <div class="d-flex mt-2">
+                                                    <div class="mb-2 pl-2">
+                                                        <input type="text" class="form-control glassy-form"
+                                                            id="WebCommandKey" placeholder="keyword eg: google"
+                                                            required>
+                                                    </div>
+
+                                                    <div class="mb-3 ml-4 pl-4" style="padding-left: 5px;">
+                                                        <input type="text" class="form-control glassy-form"
+                                                            id="WebCommandValue" placeholder="Link eg: www.google.com"
+                                                            required>
+                                                    </div>
+
+                                                    <div class="text-center ml-4 pl-4" style="padding-left: 5px;">
+                                                        <button id="WebCommandAddBtn" class="btn btn-glow"
+                                                            style="width: 100%;">Add</button>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="table-responsive table-scroll">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col" class="text-light">#</th>
+                                                                <th scope="col" class="text-light">Keyword</th>
+                                                                <th scope="col" class="text-light">Url</th>
+                                                                <th scope="col" class="text-light">Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="WebTableData">
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane fade" id="HelpCommand" role="tabpanel"
+                                            aria-labelledby="HelpCommand-tab">
+
+                                            <h1>Developed By</h1>
+                                            <h3>Digambar Chaudhari</h3>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Tab-3 -->
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
+                            tabindex="0">
+
+                            <div class="d-flex align-items-start mt-4">
+                                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                                    aria-orientation="vertical">
+                                    <button class="nav-link btn-style active" id="Contacts-tab" data-bs-toggle="pill"
+                                        data-bs-target="#Contacts" type="button" role="tab" aria-controls="Contacts"
+                                        aria-selected="true">Contacts</button>
+                                    <button class="nav-link btn-style" id="AddContacts-tab" data-bs-toggle="pill"
+                                        data-bs-target="#AddContacts" type="button" role="tab"
+                                        aria-controls="AddContacts" aria-selected="false">Add Contacts</button>
+                                </div>
+                                <div class="tab-content" id="v-pills-tabContent">
+
+                                    <!-- Link 1 -->
+                                    <div class="tab-pane fade show active" id="Contacts" role="tabpanel"
+                                        aria-labelledby="Contacts-tab">
+
+                                        <div class="p-2">
+                                            <p> Your Personal Contacts </p>
+
+                                            <div class="table-responsive table-scroll">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" class="text-light">#</th>
+                                                            <th scope="col" class="text-light">Name</th>
+                                                            <th scope="col" class="text-light">Mobile No</th>
+                                                            <th scope="col" class="text-light">Email</th>
+                                                            <th scope="col" class="text-light">Address</th>
+                                                            <th scope="col" class="text-light">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="ContactTableData">
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- Link 2 -->
+                                    <div class="tab-pane fade" id="AddContacts" role="tabpanel"
+                                        aria-labelledby="AddContacts-tab">
+
+                                        <div class="p-4">
+                                            <p>Add New Contacts Here, Note Name and Mobile number are medatory fields
+                                            </p>
+                                            <div class="mb-3 mt-4">
+                                                <input type="text" class="form-control glassy-form"
+                                                    id="InputContactName" placeholder="enter name" required>
+                                            </div>
+
+                                            <div class="mb-3 mt-4">
+                                                <input type="tel" class="form-control glassy-form"
+                                                    id="InputContactMobileNo" placeholder="enter mobile no" required>
+                                            </div>
+
+                                            <div class="mb-3 mt-4">
+                                                <input type="email" class="form-control glassy-form"
+                                                    id="InputContactEmail" placeholder="enter email" required>
+                                            </div>
+
+                                            <div class="mb-3 mt-4">
+                                                <input type="text" class="form-control glassy-form"
+                                                    id="InputContactCity" placeholder="enter city" required>
+                                            </div>
+
+                                            <div class="text-center mt-4">
+                                                <button id="AddContactBtn" class="btn btn-glow">Submit</button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

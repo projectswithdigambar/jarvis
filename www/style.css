@@ -280,3 +280,135 @@ svg {
     transform: rotate(360deg);
   }
 }
+
+.glass-effect {
+  background: rgba(0, 0, 0, 0.205);
+  border: #002bff 1px;
+  box-shadow: 0 0 20px rgb(25, 0, 255),
+    inset 0 0 0px rgb(25, 0, 255);
+}
+.glass-effect p{
+  color: white;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .glass-effect {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  background-color: #002bff;
+  color: white;
+  border: none;
+  box-shadow: 0 0 20px rgb(25, 0, 255),
+    inset 0 0 0px rgb(25, 0, 255);
+}
+
+.nav-tabs {
+  border-bottom: none
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.295);
+}
+
+.glassy-form {
+
+  color: white;
+  background-color: #ffffff1a;
+  border: 1px solid rgba(255, 255, 255, 0.295);
+
+}
+
+.glassy-form:focus {
+  color: white;
+  background-color: #1a1a1aba;
+  border: 1px solid rgba(255, 255, 255, 0.295);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  background-color: transparent;
+}
+
+.btn-glow {
+  background-color: rgb(0, 255, 55);
+  width: 20%;
+  color: white;
+  border: none;
+  box-shadow: 0 0 20px rgb(0, 255, 55),
+    inset 0 0 0px rgb(25, 255, 55);
+}
+
+.btn-glow:hover {
+  background-color: rgb(0, 190, 41);
+  color: wheat;
+}
+
+.btn-glow:focus {
+  color: white;
+  background-color: rgb(0, 255, 55);
+  box-shadow: 0 0 30px rgb(0, 255, 55),
+    inset 0 0 0px rgb(25, 255, 55);
+}
+
+.btn-glow-red {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  border: none;
+  box-shadow: 0 0 20px rgb(255, 0, 0),
+    inset 0 0 0px rgb(255, 0, 0), ;
+}
+
+.btn-glow-red:hover {
+  color: wheat;
+  background-color: rgb(212, 0, 0)
+}
+
+.btn-glow-red:focus {
+  color: white;
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0 0 30px rgb(255, 0, 0),
+    inset 0 0 0px rgb(255, 0, 0);
+}
+
+/* Glass Effect Modal */
+
+
+/* Table Scroll Property */
+
+
+.table-scroll {
+  height: 270px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 40px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #272727;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #353535;
+}
+
+/* Table Scroll Property */
