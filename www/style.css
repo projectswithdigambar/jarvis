@@ -410,5 +410,8 @@ svg {
 ::-webkit-scrollbar-thumb:hover {
   background: #353535;
 }
+.toast-container{
+  z-index: 9999; 
+}
 
 /* Table Scroll Property */

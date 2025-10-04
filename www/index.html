@@ -306,8 +306,8 @@
                                 <button id="ChatBtn" class="glow-on-hover" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i
                                         class="bi bi-chat-dots"></i></button>
-                                <button id="SettingsBtn" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" class="glow-on-hover"><i class="bi bi-gear"></i></button>
+                                <button id="SettingsBtn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    class="glow-on-hover"><i class="bi bi-gear"></i></button>
 
                             </div>
                         </div>
@@ -703,6 +703,20 @@
         </div>
     </div>
 
+    <!-- Toast -->
+    <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+        <div id="liveToast" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Alert</strong>
+                <small></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div id="ToastMessage" class="toast-body">
+
+            </div>
+        </div>
+    </div>
+
     <!--Jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
@@ -726,6 +740,9 @@
 
     <!-- lottie files -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="main.js"></script>
     <script src="controller.js"></script>
