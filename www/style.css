@@ -1,6 +1,6 @@
 
 body{
-    background-color: black;
+    background-color: rgb(34, 6, 171);
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -103,8 +103,8 @@ body{
   
   
   .glow-on-hover {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border: none;
     outline: none;
     color: #fff;
@@ -112,7 +112,7 @@ body{
     cursor: pointer;
     position: relative;
     z-index: 0;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 0px;
     margin-left: 10px;
   }
@@ -357,7 +357,7 @@ svg {
 
 .btn-glow-red {
   background-color: rgb(255, 0, 0);
-  color: white;
+  color: rgb(207, 33, 33);
   border: none;
   box-shadow: 0 0 20px rgb(255, 0, 0),
     inset 0 0 0px rgb(255, 0, 0), ;
@@ -370,9 +370,9 @@ svg {
 
 .btn-glow-red:focus {
   color: white;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(197, 17, 17);
   box-shadow: 0 0 30px rgb(255, 0, 0),
-    inset 0 0 0px rgb(255, 0, 0);
+    inset 0 0 0px rgb(223, 219, 219);
 }
 
 /* Glass Effect Modal */
@@ -402,13 +402,13 @@ svg {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #272727;
+  background: #cb0b0b;
   border-radius: 20px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #353535;
+  background: #e7e3e3;
 }
 .toast-container{
   z-index: 9999; 
