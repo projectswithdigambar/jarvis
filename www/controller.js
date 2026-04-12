@@ -5,10 +5,11 @@ $(document).ready(function () {
     // Display Speak Message
     eel.expose(DisplayMessage)
     function DisplayMessage(message) {
+        // Replace the hidden textillate <li>
+        $(".siri-message .texts li").text(message);
 
-        $(".siri-message li:first").text(message);
+        // Re-initialize textillate so it splits into chars again
         $('.siri-message').textillate('start');
-
     }
 
     // Display hood
