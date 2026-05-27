@@ -344,10 +344,10 @@ $(document).ready(function () {
 
         if (Name.length > 0 && MobileNo.length > 0) {
 
-            if (Email.length < 0) {
+            if (Email.length === 0) {
                 Email = "";
             }
-            else if (City < 0) {
+            else if (City.length === 0) {
                 City = "";
             }
 
