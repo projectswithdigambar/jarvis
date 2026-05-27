@@ -415,3 +415,56 @@ svg {
 }
 
 /* Table Scroll Property */
+
+/* ═══════════════════════════════════════════════
+   CLAP-TO-WAKE ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+/* 1. Full-screen white flash on clap impact */
+@keyframes clap-flash-anim {
+    0%   { opacity: 0; }
+    20%  { opacity: 0.55; }
+    100% { opacity: 0; }
+}
+.clap-flash::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: white;
+    pointer-events: none;
+    z-index: 9999;
+    animation: clap-flash-anim 0.18s ease-out forwards;
+}
+
+/* 2. Ripple ring that expands from the orb */
+@keyframes clap-ripple-anim {
+    0%   { transform: scale(0.4); opacity: 0.9; border-width: 4px; }
+    80%  { transform: scale(2.6); opacity: 0.15; border-width: 1px; }
+    100% { transform: scale(3.0); opacity: 0;    border-width: 0px; }
+}
+.clap-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    margin-top: -200px;
+    margin-left: -200px;
+    border-radius: 50%;
+    border: 4px solid #00aaff;
+    box-shadow: 0 0 30px #00aaff, inset 0 0 20px #00aaff44;
+    pointer-events: none;
+    z-index: 100;
+    animation: clap-ripple-anim 0.9s cubic-bezier(0.2, 0.6, 0.4, 1) forwards;
+}
+
+/* 3. Orb pulse — scale + glow surge */
+@keyframes clap-pulse-anim {
+    0%   { transform: scale(1);    filter: drop-shadow(0 0 12px #00aaff); }
+    25%  { transform: scale(1.18); filter: drop-shadow(0 0 60px #00aaff) drop-shadow(0 0 120px #0055ff); }
+    55%  { transform: scale(0.96); filter: drop-shadow(0 0 40px #00aaff); }
+    100% { transform: scale(1);    filter: drop-shadow(0 0 12px #00aaff); }
+}
+.clap-pulse {
+    animation: clap-pulse-anim 0.75s cubic-bezier(0.3, 0.7, 0.4, 1) forwards !important;
+}
