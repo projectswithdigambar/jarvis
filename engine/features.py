@@ -1,6 +1,6 @@
 import json
 import os
-from pipes import quote
+from shlex import quote
 import re
 import sqlite3
 import struct
@@ -13,12 +13,11 @@ import pyaudio
 import pyautogui
 from engine.command import speak
 from engine.config import ASSISTANT_NAME, LLM_KEY
-# Playing assiatnt sound function
+# Playing assistant sound function
 import pywhatkit as kit
 import pvporcupine
 
 from engine.helper import extract_yt_term, markdown_to_text, remove_words
-from hugchat import hugchat
 
 con = sqlite3.connect("jarvis.db")
 cursor = con.cursor()
@@ -28,7 +27,6 @@ def playAssistantSound():
     music_dir = "www\\assets\\audio\\start_sound.mp3"
     playsound(music_dir)
 
-    
 def openCommand(query):
     query = query.replace(ASSISTANT_NAME, "")
     query = query.replace("open", "")
@@ -47,11 +45,11 @@ def openCommand(query):
                 speak("Opening "+query)
                 os.startfile(results[0][0])
 
-            elif len(results) == 0: 
+            elif len(results) == 0:
                 cursor.execute(
-                'SELECT url FROM web_command WHERE name IN (?)', (app_name,))
+                    'SELECT url FROM web_command WHERE name IN (?)', (app_name,))
                 results = cursor.fetchall()
-                
+
                 if len(results) != 0:
                     speak("Opening "+query)
                     webbrowser.open(results[0][0])
@@ -65,44 +63,41 @@ def openCommand(query):
         except:
             speak("some thing went wrong")
 
-       
-
 def PlayYoutube(query):
     search_term = extract_yt_term(query)
     speak("Playing "+search_term+" on YouTube")
     kit.playonyt(search_term)
-
 
 def hotword():
     porcupine=None
     paud=None
     audio_stream=None
     try:
-       
-        # pre trained keywords    
-        porcupine=pvporcupine.create(keywords=["jarvis","alexa"]) 
+
+        # pre trained keywords
+        porcupine=pvporcupine.create(keywords=["jarvis","alexa"])
         paud=pyaudio.PyAudio()
         audio_stream=paud.open(rate=porcupine.sample_rate,channels=1,format=pyaudio.paInt16,input=True,frames_per_buffer=porcupine.frame_length)
-        
+
         # loop for streaming
         while True:
             keyword=audio_stream.read(porcupine.frame_length)
             keyword=struct.unpack_from("h"*porcupine.frame_length,keyword)
 
-            # processing keyword comes from mic 
+            # processing keyword comes from mic
             keyword_index=porcupine.process(keyword)
 
-            # checking first keyword detetcted for not
+            # checking first keyword detected or not
             if keyword_index>=0:
                 print("hotword detected")
 
-                # pressing shorcut key win+j
+                # pressing shortcut key win+j
                 import pyautogui as autogui
                 autogui.keyDown("win")
                 autogui.press("j")
                 time.sleep(2)
                 autogui.keyUp("win")
-                
+
     except:
         if porcupine is not None:
             porcupine.delete()
@@ -111,11 +106,9 @@ def hotword():
         if paud is not None:
             paud.terminate()
 
-
-
 # find contacts
 def findContact(query):
-    
+
     words_to_remove = [ASSISTANT_NAME, 'make', 'a', 'to', 'phone', 'call', 'send', 'message', 'wahtsapp', 'video']
     query = remove_words(query, words_to_remove)
 
@@ -133,9 +126,8 @@ def findContact(query):
     except:
         speak('not exist in contacts')
         return 0, 0
-    
+
 def whatsApp(mobile_no, message, flag, name):
-    
 
     if flag == 'message':
         target_tab = 12
@@ -151,7 +143,6 @@ def whatsApp(mobile_no, message, flag, name):
         message = ''
         jarvis_message = "staring video call with "+name
 
-
     # Encode the message for URL
     encoded_message = quote(message)
     print(encoded_message)
@@ -165,7 +156,7 @@ def whatsApp(mobile_no, message, flag, name):
     subprocess.run(full_command, shell=True)
     time.sleep(5)
     subprocess.run(full_command, shell=True)
-    
+
     pyautogui.hotkey('ctrl', 'f')
 
     for i in range(1, target_tab):
@@ -174,17 +165,6 @@ def whatsApp(mobile_no, message, flag, name):
     pyautogui.hotkey('enter')
     speak(jarvis_message)
 
-# chat bot 
-def chatBot(query):
-    user_input = query.lower()
-    chatbot = hugchat.ChatBot(cookie_path="engine\cookies.json")
-    id = chatbot.new_conversation()
-    chatbot.change_conversation(id)
-    response =  chatbot.chat(user_input)
-    print(response)
-    speak(response)
-    return response
-
 # android automation
 
 def makeCall(name, mobileNo):
@@ -192,7 +172,6 @@ def makeCall(name, mobileNo):
     speak("Calling "+name)
     command = 'adb shell am start -a android.intent.action.CALL -d tel:'+mobileNo
     os.system(command)
-
 
 # to send message
 def sendMessage(message, mobileNo, name):
@@ -236,17 +215,15 @@ def geminai(query):
         speak(filter_text)
     except Exception as e:
         print("Error:", e)
+        speak("Sorry, I encountered an error. Please try again.")
 
-# Settings Modal 
-
-
+# Settings Modal
 
 # Assistant name
 @eel.expose
 def assistantName():
     name = ASSISTANT_NAME
     return name
-
 
 @eel.expose
 def personalInfo():
@@ -255,10 +232,9 @@ def personalInfo():
         results = cursor.fetchall()
         jsonArr = json.dumps(results[0])
         eel.getData(jsonArr)
-        return 1    
+        return 1
     except:
         print("no data")
-
 
 @eel.expose
 def updatePersonalInfo(name, designation, mobileno, email, city):
@@ -268,23 +244,21 @@ def updatePersonalInfo(name, designation, mobileno, email, city):
     if count > 0:
         # Update existing record
         cursor.execute(
-            '''UPDATE info 
-               SET name=?, designation=?, mobileno=?, email=?, city=?''',
+            '''UPDATE info
+            SET name=?, designation=?, mobileno=?, email=?, city=?''',
             (name, designation, mobileno, email, city)
         )
     else:
         # Insert new record if no data exists
         cursor.execute(
-            '''INSERT INTO info (name, designation, mobileno, email, city) 
-               VALUES (?, ?, ?, ?, ?)''',
+            '''INSERT INTO info (name, designation, mobileno, email, city)
+            VALUES (?, ?, ?, ?, ?)''',
             (name, designation, mobileno, email, city)
         )
 
     con.commit()
     personalInfo()
     return 1
-
-
 
 @eel.expose
 def displaySysCommand():
@@ -294,19 +268,16 @@ def displaySysCommand():
     eel.displaySysCommand(jsonArr)
     return 1
 
-
 @eel.expose
 def deleteSysCommand(id):
     cursor.execute("DELETE FROM sys_command WHERE id = ?", (id,))
     con.commit()
-
 
 @eel.expose
 def addSysCommand(key, value):
     cursor.execute(
         '''INSERT INTO sys_command VALUES (?, ?, ?)''', (None,key, value))
     con.commit()
-
 
 @eel.expose
 def displayWebCommand():
@@ -316,19 +287,16 @@ def displayWebCommand():
     eel.displayWebCommand(jsonArr)
     return 1
 
-
 @eel.expose
 def addWebCommand(key, value):
     cursor.execute(
         '''INSERT INTO web_command VALUES (?, ?, ?)''', (None, key, value))
     con.commit()
 
-
 @eel.expose
 def deleteWebCommand(id):
     cursor.execute("DELETE FROM web_command WHERE Id = ?", (id,))
     con.commit()
-
 
 @eel.expose
 def displayPhoneBookCommand():
@@ -338,12 +306,10 @@ def displayPhoneBookCommand():
     eel.displayPhoneBookCommand(jsonArr)
     return 1
 
-
 @eel.expose
 def deletePhoneBookCommand(id):
     cursor.execute("DELETE FROM contacts WHERE Id = ?", (id,))
     con.commit()
-
 
 @eel.expose
 def InsertContacts(Name, MobileNo, Email, City):
